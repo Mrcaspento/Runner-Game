@@ -1,5 +1,23 @@
 {
+  "name": "Runner-Game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RandyLofgren/Runner-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "pixi.js": "^5.3.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/RandyLofgren/Runner-Game/issues"
+  },
+  "homepage": "https://github.com/RandyLofgren/Runner-Game#readme"
 }
