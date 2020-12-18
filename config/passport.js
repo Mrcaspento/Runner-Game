@@ -10,27 +10,27 @@ passport.use(
     {
       usernameField: "username"
     },
-    (username, password, done) => {
+    function(username, password, done) {
       // When a user tries to sign in this code runs
       db.User.findOne({
         where: {
           username: username
         }
-      }).then(dbUsername => {
+      }).then(function(dbUser) {
         // If there's no user with the given username
-        if (!dbUsername) {
+        if (!dbUser) {
           return done(null, false, {
             message: "Incorrect username."
           });
         }
         // If there is a user with the given username, but the password the user gives us is incorrect
-        else if (!dbUsername.validPassword(password)) {
+        else if (dbUser.password !== password) {
           return done(null, false, {
             message: "Incorrect password."
           });
         }
         // If none of the above, return the user
-        return done(null, dbUsername);
+        return done(null, dbUser);
       });
     }
   )

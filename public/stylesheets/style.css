@@ -2,3 +2,34 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.see {
+  color: white;
+}
+
+.muted {
+  background-color: rgb(221, 221, 221);
+}
+
+.card {
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+
+.body {
+  background-image: url("spongebod (2).png");
+}
+
+.filler {
+  background-color: aliceblue;
+}
+
+.space {
+  margin-top: 0px;
+}
+
+.p {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}

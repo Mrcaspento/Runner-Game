@@ -1,11 +1,11 @@
-$(document).ready(() => {
+$(document).ready(function() {
   // Getting references to our form and inputs
   const loginForm = $("form.login");
   const usernameInput = $("input#username-input");
   const passwordInput = $("input#password-input");
 
   // When the form is submitted, we validate there's an username and password entered
-  loginForm.on("submit", event => {
+  loginForm.on("submit", function(event) {
     event.preventDefault();
     const userData = {
       username: usernameInput.val().trim(),
@@ -28,11 +28,11 @@ $(document).ready(() => {
       username: username,
       password: password
     })
-      .then(() => {
+      .then(function() {
         window.location.replace("/members");
         // If there's an error, log the error
       })
-      .catch(err => {
+      .catch(function(err) {
         console.log(err);
       });
   }
