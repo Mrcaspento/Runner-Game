@@ -1,0 +1,20 @@
+{"frames": {
+
+"plankcoin.png":
+{
+	"frame": {"x":1,"y":1,"w":52,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":9,"w":52,"h":52},
+	"sourceSize": {"w":80,"h":80}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "PlankCoin.png",
+	"format": "RGBA8888",
+	"size": {"w":54,"h":54},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6db985227dad779f1007b31733be0a9a:d4fc389a2c8101939bdd1a9256884e36:e1d8706bd23afe97927a3cb05feb847a$"
+}
+}
