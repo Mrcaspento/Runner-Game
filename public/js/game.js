@@ -233,7 +233,7 @@ function keyboard(keyCode) {
   window.addEventListener("keyup", key.upHandler.bind(key), false);
   return key;
 }
-function randomInt(min, max) {
+function randomIntger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function squidLoop(delta) {
