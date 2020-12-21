@@ -1,0 +1,21 @@
+{"frames": {
+
+"covid.jpg":
+{
+	"frame": {"x":1,"y":1,"w":880,"h":660},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":880,"h":660},
+	"sourceSize": {"w":880,"h":660},
+	"anchor": {"x":0,"y":0}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "corna.png",
+	"format": "RGBA8888",
+	"size": {"w":882,"h":662},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:e408f866a98fb7c22bfb287a115a4ba8:310fee0250c8fda757b06ba9f4b42f66:a79dcee7d4db9d5e1367fe5391123d3c$"
+}
+}

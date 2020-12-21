@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 const { Graphics } = require("pixi.js");
+const { contained } = require("sequelize/types/lib/operators");
 
 /* eslint-disable prefer-const */
 let Application = PIXI.Application,
@@ -21,6 +22,7 @@ const app = new Application({
   resolution: 1,
   forceCanvas: true
 });
+
 document.body.appendChild(app.view);
 app.renderer.backgroundColor = 0x061639;
 app.renderer.autoResize = true;
@@ -60,17 +62,18 @@ for (let i = 0; i < squidwardFrames.length; i++) {
   squidwardArray.push(texture);
 }
 
-let state,
+let stateGame,
   SquidWardCharacter,
   player,
-  dungeon,
+  style,
   squidward,
   healthBar,
   bgScene,
   squidId,
   plankId,
   plackCoin,
-  backgroundId;
+  backgroundId,
+  gameOver;
 
 function setup() {
   bgScene = new Container();
@@ -98,16 +101,29 @@ function setup() {
   //SquidWard
   SquidWardCharacter = new Sprite(squidwardFrame);
   SquidWardCharacter.animationSpeed = 0.167;
-  SquidWardCharacter.play();
-  SquidWardCharacter.position.set(600, 580);
   SquidWardCharacter.vx = 0;
   SquidWardCharacter.vy = 0;
+  SquidWardCharacter.play();
+  SquidWardCharacter.position.set(600, 580);
   squidContainer.addChild(SquidWardCharacter);
   //coin
   plackCoin = new Sprite(plankId["plankcoin.png"]);
   plackCoin.x = 1200;
   plackCoin.y = 600;
   bgScene.addChild(plackCoin);
+  //gameover
+  gameOver = new Container();
+  app.stage.addChild(gameOver);
+  gameOver.visible = false;
+  let style = new TextStyle({
+    fontFamily: "Futura",
+    fontSize: 69,
+    fill: "blue"
+  });
+  message = new Text("GeT wReCkEd!", style);
+  message.x = 130;
+  message.y = app.stage.height / 2 - 69;
+  gameOver.addChild(message);
 
   //health
   healthBar = new Container();
@@ -126,4 +142,100 @@ function setup() {
   innerBar.drawRect(0, 0, 128, 8);
   innerBar.endFill();
   healthBar.addChild(innerBar);
+
+  //keyborad arrow keys
+  let left = keyboard(37),
+    right = keyboard(39);
+
+  left.press = function() {
+    bgScene.x += 25;
+    SquidWardCharacter.vy = 0;
+    SquidWardCharacter.scale.x = 1;
+  };
+  left.release = function() {
+    if (!right.isDown && SquidWardCharacter.vy === 0) {
+      SquidWardCharacter.vx = 0;
+    }
+  };
+  right.press = function() {
+    SquidWardCharacter.scale.x = -1;
+    bgScene.x += 25;
+    SquidWardCharacter.vy = 0;
+    SquidWardCharacter.play();
+  };
+  right.release = function() {
+    if (!left.isDown && SquidWardCharacter.vy === 0) {
+      SquidWardCharacter.vx = 0;
+    }
+  };
+  stateGame = play;
+  app.ticker.speed = 0.2;
+  app.ticker.add(delta => squidLoop(delta));
+}
+function fin() {
+  gameOver.visible = true;
+  bgScene.visible = false;
+}
+function play(delta) {
+  SquidWardCharacter.x += SquidWardCharacter.vx;
+  SquidWardCharacter.y += SquidWardCharacter.vy;
+  contained(SquidWardCharacter, { x: 28, y: 10, width: 10880, height: 768 });
+  //
+  let squidHitIt = false;
+
+  if (squidHitIt) {
+    SquidWardCharacter.alpha = 0.25;
+    healthBar.outer.width -= 1;
+  } else {
+    SquidWardCharacter.alpha = 1;
+  }
+  if (healthBar.outer.width < 0) {
+    stateGame = fin;
+    message.text = "GeT wReCkEd!";
+  }
+  if (hitTestRectangle(SquidWardCharacter, plankCoin)) {
+    plankCoin.x = SquidWardCharacter.x + 8;
+    plackCoin.y = SquidWardCharacter.y + 8;
+  }
+}
+
+//its a keyboard helper function
+function keyboard(keyCode) {
+  let key = {};
+  key.code = keyCode;
+  key.isDown = false;
+  key.isUp = true;
+  key.press = undefined;
+  key.release = undefined;
+  //The `downHandler`
+  key.downHandler = function(event) {
+    if (event.keyCode === key.code) {
+      if (key.isUp && key.press) {
+        key.press();
+      }
+      key.isDown = true;
+      key.isUp = false;
+    }
+  };
+  //The `upHandler`
+  key.upHandler = function(event) {
+    if (event.keyCode === key.code) {
+      if (key.isDown && key.release) {
+        key.release();
+      }
+      key.isDown = false;
+      key.isUp = true;
+    }
+    event.preventDefault();
+  };
+  //Attach event listeners
+  window.addEventListener("keydown", key.downHandler.bind(key), false);
+  window.addEventListener("keyup", key.upHandler.bind(key), false);
+  return key;
+}
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function squidLoop(delta) {
+  stateGame(delta);
 }
