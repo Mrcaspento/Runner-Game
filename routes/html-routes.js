@@ -29,6 +29,8 @@ module.exports = function(app) {
   });
 
   app.get("/scores", isAuthenticated, function(req, res) {
-    res.render("scores");
+    const username = req.user.username;
+    const score = req.user.score;
+    res.render("scores", { username, score });
   });
 };
