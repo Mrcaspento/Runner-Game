@@ -1,8 +1,6 @@
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-const path = require("path");
-
 module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
@@ -25,8 +23,12 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, function(req, res) {
     res.render("members");
   });
-};
 
-app.get("/runnerGame", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/runnerGame.html"));
-});
+  app.get("/runnerGame", isAuthenticated, function(req, res) {
+    res.render("runnerGame");
+  });
+
+  app.get("/scores", isAuthenticated, function(req, res) {
+    res.render("scores");
+  });
+};

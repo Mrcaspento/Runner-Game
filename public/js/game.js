@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
-const { Graphics } = require("pixi.js");
-const { contained } = require("sequelize/types/lib/operators");
+// const { Graphics } = require("pixi.js");
+// const { contained } = require("sequelize/types/lib/operators");
 
 /* eslint-disable prefer-const */
 let Application = PIXI.Application,
@@ -12,6 +12,7 @@ let Application = PIXI.Application,
   Text = PIXI.Text,
   // eslint-disable-next-line no-unused-vars
   TextStyle = PIXI.TextStyle;
+let Graphics = PIXI.Graphics;
 
 //Create a Pixi Application
 const app = new Application({

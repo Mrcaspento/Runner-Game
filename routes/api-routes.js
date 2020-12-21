@@ -47,4 +47,12 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.post("/api/runnerGame", function(req, res) {
+    res.json(req.user);
+  });
+
+  app.post("/api/scores", function(req, res) {
+    res.json(req.user);
+  });
 };
