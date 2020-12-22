@@ -16,41 +16,45 @@ let Application = PIXI.Application,
 //Create a Pixi Application
 const app = new Application({
   width: 10880,
-  height: 770,
+  height: 750,
   antialiasing: true,
   transparent: false,
   resolution: 1,
   forceCanvas: true
 });
 //Global vars
-let stateGame;
+let state;
 let SquidWardCharacter;
 let squidwardFrame;
 let squidward;
-let squidId;
 let squidWardtexture;
+let squidId;
 let bobId;
+let plankId;
+let altId;
+let id;
 let scoringBox;
 let scoreWord;
 let style;
 let healthBar;
 let bgScene;
-let plankId;
 let plankCoin;
 let backgroundId;
 let gameOver;
 let enemies;
 let message;
-let id;
-let altId;
 let corna;
+//animated vars
+const keys = {};
+let keysDiv;
+
+// const sound = PIXI.sound.Sound.from("/mp3/RogueAdventureTime(OriginalMix).mp3");
 
 document.body.appendChild(app.view);
 app.renderer.autoResize = true;
 app.renderer.resize(10880, 768);
 app.renderer.view.style.position = "absolute";
 app.renderer.view.style.display = "block";
-app.renderer.autoResize = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 
 loader
@@ -60,12 +64,10 @@ loader
   .add("images/corona.json")
   .add("images/bob.json")
   .load(setup);
-
 function setup() {
   //setting the stage
   bgScene = new Container();
   squidContainer = new Container();
-  // bgScene = PIXI.Sprite.from("images/background.png");
 
   app.stage.addChild(bgScene);
   app.stage.addChild(squidContainer);
@@ -88,11 +90,11 @@ function setup() {
   squidContainer.addChild(squidward);
 
   plankCoin = new Sprite(plankId["plankcoin.png"]);
-  plankCoin.x = 1600;
+  plankCoin.x = 1450;
   plankCoin.y = 600;
   bgScene.addChild(plankCoin);
 
-  let numberOfCoronas = 18,
+  let numberOfCoronas = 16,
     spacing = 80,
     xOffset = 150,
     speed = 5,
@@ -115,13 +117,13 @@ function setup() {
   squidContainer.addChild(healthBar);
   let innerBar = new Graphics();
   innerBar.beginFill(0x000000);
-  innerBar.drawRect(0, 0, 128, 8);
+  innerBar.drawRect(0, 20, 128, 24);
   innerBar.endFill();
   healthBar.addChild(innerBar);
   //the black bar the innerbar lays in
   let outerBar = new Graphics();
   outerBar.beginFill(0xff3300);
-  outerBar.drawRect(0, 0, 128, 8);
+  outerBar.drawRect(0, 20, 128, 24);
   outerBar.endFill();
   healthBar.addChild(outerBar);
   healthBar.outer = outerBar;
@@ -165,27 +167,28 @@ function setup() {
       squidward.vx = 0;
     }
   };
-
   state = play;
   app.ticker.speed = 0.2;
   app.ticker.add(delta => gameLoop(delta));
 }
 
 function gameLoop(delta) {
+  // state(delta);
   state(delta);
   scoringBox = new Container();
   let scoreBox = new Graphics();
   scoreBox.drawRect(100, 5, 60, 60);
+  scoreBox.beginFill(0x000000);
   let scoreStyle = new TextStyle({
     fontFamily: "Futura",
     fontSize: 40,
     fill: "red"
   });
+
   //display score
   currentScore = new Text(healthBar.outer.width, scoreStyle);
   currentScore.x = 100;
   currentScore.y = 15;
-
   scoreBox.addChild(currentScore);
   squidContainer.addChild(scoreBox);
 
@@ -197,10 +200,8 @@ function gameLoop(delta) {
 
 function play(delta) {
   squidward.x += squidward.vx;
-
   contain(squidward, { x: 28, y: 10, width: 1800, height: 768 });
   let squidwardHit = false;
-
   coronas.forEach(function(corona) {
     corona.y += corona.vy;
     let coronaHitsWall = contain(corona, {
