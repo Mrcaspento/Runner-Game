@@ -1,7 +1,5 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-unused-vars */
-
-const { Graphics } = require("pixi.js");
-const { contained } = require("sequelize/types/lib/operators");
 
 /* eslint-disable prefer-const */
 let Application = PIXI.Application,
@@ -10,6 +8,8 @@ let Application = PIXI.Application,
   TextureCache = PIXI.utils.TextureCache,
   Sprite = PIXI.Sprite,
   Text = PIXI.Text,
+  resources = PIXI.loader.resources,
+  Graphics = PIXI.Graphics,
   // eslint-disable-next-line no-unused-vars
   TextStyle = PIXI.TextStyle;
 
@@ -22,114 +22,103 @@ const app = new Application({
   resolution: 1,
   forceCanvas: true
 });
+//Global vars
+let stateGame;
+let SquidWardCharacter;
+let squidwardFrame;
+let squidward;
+let squidId;
+let squidWardtexture;
+let bobId;
+let scoringBox;
+let scoreWord;
+let style;
+let healthBar;
+let bgScene;
+let plankId;
+let plankCoin;
+let backgroundId;
+let gameOver;
+let enemies;
+let message;
+let id;
+let altId;
+let corna;
 
 document.body.appendChild(app.view);
-app.renderer.backgroundColor = 0x061639;
 app.renderer.autoResize = true;
-app.renderer.resize(512, 512);
+app.renderer.resize(10880, 768);
 app.renderer.view.style.position = "absolute";
 app.renderer.view.style.display = "block";
 app.renderer.autoResize = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 
-PIXI.utils.TextureCache["../images/squidwardFrame_01.png"];
-const texture = PIXI.utils.TextureCache["../images/squidwardFrame_01.png"];
-
-const squidwardFrames = [
-  "../images/squidwardFrame_01.png",
-  "../images/squidwardFrame_02.png",
-  "../images/squidwardFrame_03.png",
-  "../images/squidwardFrame_04.png",
-  "../images/squidwardFrame_05.png",
-  "../images/squidwardFrame_06.png",
-  "../images/squidwardFrame_07.png",
-  "../images/squidwardFrame_08.png",
-  "../images/squidwardFrame_09.png",
-  "../images/squidwardFrame_10.png"
-];
-const squidwardArray = [];
-
 loader
-  .add(squidwardFrames)
-  .add("../images/plankcoin.json")
-  .add("../images/background.json")
-  .add("../images/squidward.json")
-  .add("../squidwardRest", "images/squidwardFrame_00.png")
+  .add("images/squidward.json")
+  .add("images/plankcoin.json")
+  .add("images/background.json")
+  .add("images/corona.json")
+  .add("images/bob.json")
   .load(setup);
 
-for (let i = 0; i < squidwardFrames.length; i++) {
-  const texture = PIXI.Texture.from(squidwardFrames[i]);
-  squidwardArray.push(texture);
-}
-
-let stateGame,
-  SquidWardCharacter,
-  player,
-  style,
-  squidward,
-  healthBar,
-  bgScene,
-  squidId,
-  plankId,
-  plackCoin,
-  backgroundId,
-  gameOver;
-
 function setup() {
+  //setting the stage
   bgScene = new Container();
-  app.stage.addChild(bgScene);
-
-  const squidward = new PIXI.Sprite(
-    PIXI.loader.resources.squidwardRest.texture
-  );
-  //Make the game scene and add it to the stage
-  gameScene = new Container();
   squidContainer = new Container();
-  app.stage.addChild(gameScene);
+  // bgScene = PIXI.Sprite.from("images/background.png");
+
+  app.stage.addChild(bgScene);
   app.stage.addChild(squidContainer);
-  app.stage.addChild(squidward);
 
-  //animation
-  const animateSquid = new PIXI.AnimatedSprite(
-    squidwardFrame["squidwardFrame_11.png"]
-  );
-  animateSquid.animationSpeed = 0.167;
-  animateSquid.updateAnchor = true; // update anchor for each animation frame
-  animateSquid.play();
-  app.stage.addChild(squidwardFrame);
+  //atlas id's
+  squidId = resources["images/squidward.json"].textures;
+  bobId = resources["images/bob.json"].textures;
+  plankId = resources["images/plankcoin.json"].textures;
+  backgroundId = resources["images/background.json"].textures;
+  coronaId = resources["images/corona.json"].textures;
+  bikiniBottom = new Sprite(backgroundId["background"]);
 
-  //SquidWard
-  SquidWardCharacter = new Sprite(squidwardFrame);
-  SquidWardCharacter.animationSpeed = 0.167;
-  SquidWardCharacter.vx = 0;
-  SquidWardCharacter.vy = 0;
-  SquidWardCharacter.play();
-  SquidWardCharacter.position.set(600, 580);
-  squidContainer.addChild(SquidWardCharacter);
-  //coin
-  plackCoin = new Sprite(plankId["plankcoin.png"]);
-  plackCoin.x = 1200;
-  plackCoin.y = 600;
-  bgScene.addChild(plackCoin);
-  //gameover
-  gameOver = new Container();
-  app.stage.addChild(gameOver);
-  gameOver.visible = false;
-  let style = new TextStyle({
-    fontFamily: "Futura",
-    fontSize: 69,
-    fill: "blue"
-  });
-  message = new Text("GeT wReCkEd!", style);
-  message.x = 130;
-  message.y = app.stage.height / 2 - 69;
-  gameOver.addChild(message);
+  bgScene.addChild(bikiniBottom);
 
-  //health
+  squidward = new Sprite(squidId["squidwardFrame_11.png"]);
+  squidward.position.set(60, 580);
+  squidward.anchor.set(0.5, 0);
+  squidward.vx = 0;
+  squidward.scale.x = -1;
+  squidContainer.addChild(squidward);
+
+  plankCoin = new Sprite(plankId["plankcoin.png"]);
+  plankCoin.x = 1600;
+  plankCoin.y = 600;
+  bgScene.addChild(plankCoin);
+
+  let numberOfCoronas = 18,
+    spacing = 80,
+    xOffset = 150,
+    speed = 5,
+    direction = -1;
+  coronas = [];
+  for (let i = 0; i < numberOfCoronas; i++) {
+    let corona = new Sprite(coronaId["corona"]);
+    let x = spacing * i + xOffset;
+    let y = randomInt(0, app.stage.height - corona.height);
+    corona.x = x;
+    corona.y = y;
+    corona.vy = speed * direction;
+    direction *= -1;
+    coronas.push(corona);
+    bgScene.addChild(corona);
+  }
+  //uses PIXI.js to draw a shape(rectangle) and we assign it a color
   healthBar = new Container();
   healthBar.position.set(170, 4);
   squidContainer.addChild(healthBar);
-
+  let innerBar = new Graphics();
+  innerBar.beginFill(0x000000);
+  innerBar.drawRect(0, 0, 128, 8);
+  innerBar.endFill();
+  healthBar.addChild(innerBar);
+  //the black bar the innerbar lays in
   let outerBar = new Graphics();
   outerBar.beginFill(0xff3300);
   outerBar.drawRect(0, 0, 128, 8);
@@ -137,69 +126,174 @@ function setup() {
   healthBar.addChild(outerBar);
   healthBar.outer = outerBar;
 
-  let innerBar = new Graphics();
-  innerBar.beginFill(0x000000);
-  innerBar.drawRect(0, 0, 128, 8);
-  innerBar.endFill();
-  healthBar.addChild(innerBar);
+  gameOverScene = new Container();
+  winnerPic = new Sprite(bobId["bob"]);
+  winnerPic.x = 550;
+  winnerPic.y = 450;
+  gameOverScene.addChild(winnerPic);
+  app.stage.addChild(gameOverScene);
+  gameOverScene.visible = false;
+  let style = new TextStyle({
+    fontFamily: "Futura",
+    fontSize: 64,
+    fill: "white"
+  });
+  message = new Text("The End!", style);
+  message.x = 120;
+  message.y = app.stage.height / 2 - 32;
+  gameOverScene.addChild(message);
 
-  //keyborad arrow keys
-  let left = keyboard(37),
-    right = keyboard(39);
-
+  let left = keyboard(37);
+  let right = keyboard(39);
   left.press = function() {
-    bgScene.x += 25;
-    SquidWardCharacter.vy = 0;
-    SquidWardCharacter.scale.x = 1;
+    squidward.vx = -5;
+    squidward.vy = 0;
+    squidward.scale.x = 1;
   };
   left.release = function() {
-    if (!right.isDown && SquidWardCharacter.vy === 0) {
-      SquidWardCharacter.vx = 0;
+    if (!right.isDown && squidward.vy === 0) {
+      squidward.vx = 0;
     }
   };
   right.press = function() {
-    SquidWardCharacter.scale.x = -1;
-    bgScene.x += 25;
-    SquidWardCharacter.vy = 0;
-    SquidWardCharacter.play();
+    squidward.vx = 5;
+    squidward.vy = 0;
+    squidward.scale.x = -1;
   };
   right.release = function() {
-    if (!left.isDown && SquidWardCharacter.vy === 0) {
-      SquidWardCharacter.vx = 0;
+    if (!left.isDown && squidward.vy === 0) {
+      squidward.vx = 0;
     }
   };
-  stateGame = play;
-  app.ticker.speed = 0.2;
-  app.ticker.add(delta => squidLoop(delta));
-}
-function fin() {
-  gameOver.visible = true;
-  bgScene.visible = false;
-}
-function play(delta) {
-  SquidWardCharacter.x += SquidWardCharacter.vx;
-  SquidWardCharacter.y += SquidWardCharacter.vy;
-  contained(SquidWardCharacter, { x: 28, y: 10, width: 10880, height: 768 });
-  //
-  let squidHitIt = false;
 
-  if (squidHitIt) {
-    SquidWardCharacter.alpha = 0.25;
+  state = play;
+  app.ticker.speed = 0.2;
+  app.ticker.add(delta => gameLoop(delta));
+}
+
+function gameLoop(delta) {
+  state(delta);
+  scoringBox = new Container();
+  let scoreBox = new Graphics();
+  scoreBox.drawRect(100, 5, 60, 60);
+  let scoreStyle = new TextStyle({
+    fontFamily: "Futura",
+    fontSize: 40,
+    fill: "red"
+  });
+  //display score
+  currentScore = new Text(healthBar.outer.width, scoreStyle);
+  currentScore.x = 100;
+  currentScore.y = 15;
+
+  scoreBox.addChild(currentScore);
+  squidContainer.addChild(scoreBox);
+
+  let scoreWord = new Text("Score", scoreStyle);
+  scoreWord.x = 7;
+  scoreWord.y = 15;
+  squidContainer.addChild(scoreWord);
+}
+
+function play(delta) {
+  squidward.x += squidward.vx;
+
+  contain(squidward, { x: 28, y: 10, width: 1800, height: 768 });
+  let squidwardHit = false;
+
+  coronas.forEach(function(corona) {
+    corona.y += corona.vy;
+    let coronaHitsWall = contain(corona, {
+      x: 28,
+      y: 10,
+      width: 3000,
+      height: 700
+    });
+    if (coronaHitsWall === "top" || coronaHitsWall === "bottom") {
+      corona.vy *= -1.05;
+    }
+    if (hitTestRectangle(squidward, corona)) {
+      squidwardHit = true;
+    }
+  });
+  if (squidwardHit) {
+    squidward.alpha = 0.5;
     healthBar.outer.width -= 1;
   } else {
-    SquidWardCharacter.alpha = 1;
+    squidward.alpha = 1;
   }
-  if (healthBar.outer.width < 0) {
-    stateGame = fin;
-    message.text = "GeT wReCkEd!";
+  if (hitTestRectangle(squidward, plankCoin)) {
+    plankCoin.x = squidward.x + 8;
+    plankCoin.y = squidward.y + 8;
   }
-  if (hitTestRectangle(SquidWardCharacter, plankCoin)) {
-    plankCoin.x = SquidWardCharacter.x + 8;
-    plackCoin.y = SquidWardCharacter.y + 8;
+  if (healthBar.outer.width < 0.5) {
+    state = end;
+    message.text = "You lost!";
+  }
+  if (hitTestRectangle(squidward, plankCoin)) {
+    state = end;
+
+    message.text = "You won with a score of " + healthBar.outer.width + "!";
   }
 }
 
-//its a keyboard helper function
+function end() {
+  bgScene.visible = false;
+  squidContainer.visible = false;
+  gameOverScene.visible = true;
+}
+//For Testing and framework like JEST
+function contain(sprite, container) {
+  let collision = undefined;
+  if (sprite.x < container.x) {
+    sprite.x = container.x;
+    collision = "left";
+  }
+  if (sprite.y < container.y) {
+    sprite.y = container.y;
+    collision = "top";
+  }
+  if (sprite.x + sprite.width > container.width) {
+    sprite.x = container.width - sprite.width;
+    collision = "right";
+  }
+  if (sprite.y + sprite.height > container.height) {
+    sprite.y = container.height - sprite.height;
+    collision = "bottom";
+  }
+  return collision;
+}
+//PIXI.js test for collisons like using JEST
+function hitTestRectangle(r1, r2) {
+  let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+  hit = false;
+  r1.centerX = r1.x + r1.width / 2;
+  r1.centerY = r1.y + r1.height / 2;
+  r2.centerX = r2.x + r2.width / 2;
+  r2.centerY = r2.y + r2.height / 2;
+  r1.halfWidth = r1.width / 2;
+  r1.halfHeight = r1.height / 2;
+  r2.halfWidth = r2.width / 2;
+  r2.halfHeight = r2.height / 2;
+  vx = r1.centerX - r2.centerX;
+  vy = r1.centerY - r2.centerY;
+  combinedHalfWidths = r1.halfWidth + r2.halfWidth;
+  combinedHalfHeights = r1.halfHeight + r2.halfHeight;
+  if (Math.abs(vx) < combinedHalfWidths) {
+    if (Math.abs(vy) < combinedHalfHeights) {
+      hit = true;
+    } else {
+      hit = false;
+    }
+  } else {
+    hit = false;
+  }
+  return hit;
+}
+//for the cornavirus gen
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 function keyboard(keyCode) {
   let key = {};
   key.code = keyCode;
@@ -207,7 +301,6 @@ function keyboard(keyCode) {
   key.isUp = true;
   key.press = undefined;
   key.release = undefined;
-  //The `downHandler`
   key.downHandler = function(event) {
     if (event.keyCode === key.code) {
       if (key.isUp && key.press) {
@@ -217,7 +310,6 @@ function keyboard(keyCode) {
       key.isUp = false;
     }
   };
-  //The `upHandler`
   key.upHandler = function(event) {
     if (event.keyCode === key.code) {
       if (key.isDown && key.release) {
@@ -228,14 +320,7 @@ function keyboard(keyCode) {
     }
     event.preventDefault();
   };
-  //Attach event listeners
   window.addEventListener("keydown", key.downHandler.bind(key), false);
   window.addEventListener("keyup", key.upHandler.bind(key), false);
   return key;
-}
-function randomIntger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function squidLoop(delta) {
-  stateGame(delta);
 }

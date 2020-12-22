@@ -1,21 +1,21 @@
 {"frames": {
 
 
-"plankcoin.png":
+"corona":
 {
-	"frame": {"x":2,"y":2,"w":60,"h":60},
+	"frame": {"x":7,"y":6,"w":54,"h":53},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":12},
-	"sourceSize": {"w":26,"h":12},
-	"pivot": {"x":0.5,"y":0.5}
+	"spriteSourceSize": {"x":0,"y":0,"w":73,"h":71},
+	"sourceSize": {"w":73,"h":71},
+	"pivot": {"x":0.0,"y":0.0}
 }},
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "plankCoin.png",
+	"image": "corona.png",
 	"format": "RGBA8888",
-	"size": {"w":80,"h":80},
+	"size": {"w":880,"h":662},
 	"scale": "1",
 	"smartupdate": "$TexturePacker:SmartUpdate:52586866875309c357a59ef94cc3e344:67b70cfeefc06c04b551ab33c8f1fc7a:b00d48b51f56eb7c81e25100fcce2828$"
 }
