@@ -44,6 +44,10 @@ let gameOver;
 let enemies;
 let message;
 let corna;
+//animated vars
+const keys = {};
+let keysDiv;
+
 // const sound = PIXI.sound.Sound.from("/mp3/RogueAdventureTime(OriginalMix).mp3");
 
 document.body.appendChild(app.view);
@@ -60,7 +64,6 @@ loader
   .add("images/corona.json")
   .add("images/bob.json")
   .load(setup);
-
 function setup() {
   //setting the stage
   bgScene = new Container();
@@ -91,7 +94,7 @@ function setup() {
   plankCoin.y = 600;
   bgScene.addChild(plankCoin);
 
-  let numberOfCoronas = 18,
+  let numberOfCoronas = 16,
     spacing = 80,
     xOffset = 150,
     speed = 5,
@@ -170,6 +173,7 @@ function setup() {
 }
 
 function gameLoop(delta) {
+  // state(delta);
   state(delta);
   scoringBox = new Container();
   let scoreBox = new Graphics();
@@ -180,6 +184,7 @@ function gameLoop(delta) {
     fontSize: 40,
     fill: "red"
   });
+
   //display score
   currentScore = new Text(healthBar.outer.width, scoreStyle);
   currentScore.x = 100;
@@ -195,7 +200,6 @@ function gameLoop(delta) {
 
 function play(delta) {
   squidward.x += squidward.vx;
-
   contain(squidward, { x: 28, y: 10, width: 1800, height: 768 });
   let squidwardHit = false;
   coronas.forEach(function(corona) {
