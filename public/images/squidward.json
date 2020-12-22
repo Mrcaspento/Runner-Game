@@ -1,114 +1,294 @@
-{"frames": {
-
-"squidwardFrame_01.png":
 {
-	"frame": {"x":596,"y":1,"w":82,"h":108},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":7,"y":0,"w":82,"h":108},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0.48,"y":0.865546}
-},
-"squidwardFrame_02.png":
-{
-	"frame": {"x":461,"y":1,"w":84,"h":109},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":8,"y":5,"w":84,"h":109},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_03.png":
-{
-	"frame": {"x":126,"y":1,"w":78,"h":117},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":11,"y":1,"w":78,"h":117},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_04.png":
-{
-	"frame": {"x":1,"y":1,"w":59,"h":119},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":20,"y":0,"w":59,"h":119},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_05.png":
-{
-	"frame": {"x":547,"y":1,"w":47,"h":109},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":26,"y":5,"w":47,"h":109},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_06.png":
-{
-	"frame": {"x":382,"y":1,"w":77,"h":111},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":11,"y":4,"w":77,"h":111},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_07.png":
-{
-	"frame": {"x":680,"y":1,"w":76,"h":107},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":12,"y":6,"w":76,"h":107},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_08.png":
-{
-	"frame": {"x":62,"y":1,"w":62,"h":118},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":19,"y":0,"w":62,"h":118},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_09.png":
-{
-	"frame": {"x":330,"y":1,"w":50,"h":113},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":25,"y":3,"w":50,"h":113},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_10.png":
-{
-	"frame": {"x":206,"y":1,"w":67,"h":115},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":16,"y":2,"w":67,"h":115},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-},
-"squidwardFrame_11.png":
-{
-	"frame": {"x":275,"y":1,"w":53,"h":113},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":23,"y":3,"w":53,"h":113},
-	"sourceSize": {"w":100,"h":119},
-	"anchor": {"x":0,"y":0}
-}},
-"animations": {
-	"squidwardFrame": ["squidwardFrame_01.png","squidwardFrame_02.png","squidwardFrame_03.png","squidwardFrame_04.png","squidwardFrame_05.png","squidwardFrame_06.png","squidwardFrame_07.png","squidwardFrame_08.png","squidwardFrame_09.png","squidwardFrame_10.png"]
-},
-"meta": {
-	"app": "https://www.codeandweb.com/texturepacker",
-	"version": "1.0",
-	"image": "squidward.png",
-	"format": "RGBA8888",
-	"size": {"w":757,"h":121},
-	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ff7565929584bcc8e92fa34ccbb2dc7b:53026a2fb03fd13687607d8e89d48da6:ab40d63cb5775677e55c09f1d81b9511$"
-}
+	"frames": {
+		"squidwardFrame_11.png": {
+			"frame": {
+				"x": 805,
+				"y": 4,
+				"w": 50,
+				"h": 111
+			},
+			"rotated": false,
+			"trimmed": true,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 50,
+				"h": 111
+			},
+			"sourceSize": {
+				"w": 50,
+				"h": 111
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_01.png": {
+			"frame": {
+				"x": 3,
+				"y": 6,
+				"w": 81,
+				"h": 110
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_02.png": {
+			"frame": {
+				"x": 94,
+				"y": 8,
+				"w": 82,
+				"h": 108
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_03.png": {
+			"frame": {
+				"x": 186,
+				"y": 2,
+				"w": 80,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_04.png": {
+			"frame": {
+				"x": 273,
+				"y": 2,
+				"w": 62,
+				"h": 117
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_05.png": {
+			"frame": {
+				"x": 352,
+				"y": 7,
+				"w": 46,
+				"h": 106
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_06.png": {
+			"frame": {
+				"x": 408,
+				"y": 5,
+				"w": 75,
+				"h": 110
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_07.png": {
+			"frame": {
+				"x": 500,
+				"y": 10,
+				"w": 74,
+				"h": 106
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_08.png": {
+			"frame": {
+				"x": 592,
+				"y": 2,
+				"w": 58,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_09.png": {
+			"frame": {
+				"x": 668,
+				"y": 6,
+				"w": 50,
+				"h": 112
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"squidwardFrame_10.png": {
+			"frame": {
+				"x": 727,
+				"y": 2,
+				"w": 68,
+				"h": 113
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 26,
+				"h": 12
+			},
+			"sourceSize": {
+				"w": 26,
+				"h": 12
+			},
+			"pivot": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		}
+	},
+	"animations": {
+		"squidwardFrame": [
+			"squidwardFrame_01.png",
+			"squidwardFrame_02.png",
+			"squidwardFrame_03.png",
+			"squidwardFrame_04.png",
+			"squidwardFrame_05.png",
+			"squidwardFrame_06.png",
+			"squidwardFrame_07.png",
+			"squidwardFrame_08.png",
+			"squidwardFrame_09.png",
+			"squidwardFrame_10.png"
+		]
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "squidwardWalk.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 940,
+			"h": 125
+		},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:52586866875309c357a59ef94cc3e344:67b70cfeefc06c04b551ab33c8f1fc7a:b00d48b51f56eb7c81e25100fcce2828$"
+	}
 }
