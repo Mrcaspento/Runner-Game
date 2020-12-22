@@ -115,7 +115,7 @@ function setup() {
   squidContainer.addChild(healthBar);
   let innerBar = new Graphics();
   innerBar.beginFill(0x000000);
-  innerBar.drawRect(0, 0, 128, 8);
+  innerBar.drawRect(0, 5, 128, 8);
   innerBar.endFill();
   healthBar.addChild(innerBar);
   //the black bar the innerbar lays in

@@ -7,7 +7,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+     return res.redirect("/members");
     }
     res.render("index");
   });
@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/members");
+     return res.redirect("/members");
     }
     res.render("login");
   });
