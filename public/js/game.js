@@ -118,6 +118,7 @@ function setup() {
   innerBar.drawRect(0, 0, 128, 8);
   innerBar.endFill();
   healthBar.addChild(innerBar);
+  //the black bar the innerbar lays in
   let outerBar = new Graphics();
   outerBar.beginFill(0xff3300);
   outerBar.drawRect(0, 0, 128, 8);
