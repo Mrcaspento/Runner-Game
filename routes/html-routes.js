@@ -23,5 +23,12 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, function(req, res) {
     res.render("members");
   });
-  
+
+  app.get("/runnerGame", isAuthenticated, function(req, res) {
+    res.render("runnerGame");
+  });
+
+  app.get("/scores", isAuthenticated, function(req, res) {
+    res.render("scores");
+  });
 };
