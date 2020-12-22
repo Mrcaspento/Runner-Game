@@ -187,7 +187,7 @@ function gameLoop(delta) {
 
   //display score
   currentScore = new Text(healthBar.outer.width, scoreStyle);
-  currentScore.x = 100;
+  currentScore.x = 150;
   currentScore.y = 15;
   scoreBox.addChild(currentScore);
   squidContainer.addChild(scoreBox);

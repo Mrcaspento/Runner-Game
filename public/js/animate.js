@@ -10,7 +10,6 @@
 //  let app = new PIXI.Application({width: 2000, height: 1000});
 //   document.body.appendChild(app.view);
 
-
 // app.loader.add("squidward", "./images/squidwardWalk.png");
 // app.loader.load(doneLoading);
 
