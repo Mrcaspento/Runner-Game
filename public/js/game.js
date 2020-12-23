@@ -198,6 +198,13 @@ function gameLoop(delta) {
   squidContainer.addChild(scoreWord);
 }
 
+function sendScore(score) {
+  $.post("/api/runnerGame", {
+    score: score
+  });
+  console.log(score);
+}
+
 function play(delta) {
   squidward.x += squidward.vx;
   contain(squidward, { x: 28, y: 10, width: 1800, height: 768 });
@@ -235,6 +242,7 @@ function play(delta) {
     state = end;
 
     message.text = "You won with a score of " + healthBar.outer.width + "!";
+    sendScore(healthBar.outer.width);
   }
 }
 

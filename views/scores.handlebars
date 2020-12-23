@@ -1,22 +1,26 @@
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/logout">
-          Logout
-        </a>
-      </div>
+  <div class="container-fluid att2">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+      <a class="navbar-brand" href="/members">Homepage</a>
+      <a class="navbar-brand" href="/runnerGame">Start Game</a>
     </div>
+  </div>
 </nav>
 <div class="card text-center col-md-6 card">
-    <h1 class="card-header muted p">Highscores</h1>
-    <div class="card-body filler row pad">
-        <div class="col-md-6 pad">
-            <h2 class="card-title space">Player</h2>
-            <h3>{{username}}</h3>
-        </div>
-        <div class="col-md-6 pad">
-            <h2 class="card-title space">Highscore</h2>
-            <h3>{{#if score}}{{score}}{{else}}N/A{{/if}}</h3>
-        </div>
-</div>
-<div class="card-footer text-muted muted">@copyright</div>
+  <h1 class="card-header p att3" id="heading">Highscores</h1>
+  <div class="card-body filler row pad att1">
+    <div class="col-md-6 pad">
+      <h2 class="card-title space">Player</h2>
+      <h3>{{username}}</h3>
+    </div>
+    <div class="col-md-6 pad">
+      <h2 class="card-title space">Scores</h2>
+    {{#each scores}}
+      <h3>{{#if value}}{{value}}{{/if}}</h3>
+    {{/each}}
+    </div>
+  </div>
+  <div class="card-footer text-muted muted att3" id="bottom">@copyright</div>

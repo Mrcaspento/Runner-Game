@@ -38,3 +38,45 @@ form.login {
   padding: 0px;
   margin: 0px;
 }
+
+.main {
+  background-color: #ebebeb;
+}
+
+.att1 {
+  background-color: #f5a25d;
+}
+
+.att2 {
+  background-color: #fa7f72;
+}
+
+.att3 {
+  background-color: #389393;
+}
+
+#heading {
+  padding: 20px;
+  border: 10px;
+  border-color: black;
+}
+
+.form {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#bottom {
+  padding: 20px;
+  border: 10px;
+  border-color: black;
+  color: black;
+}
+
+.link {
+  color: white;
+}
+
+.options {
+  margin: 0px;
+}

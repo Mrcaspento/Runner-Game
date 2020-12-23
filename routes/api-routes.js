@@ -33,6 +33,18 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
+  app.get("/members", function(req) {
+    req.redirect("/members");
+  });
+
+  app.get("/scores", function(req) {
+    req.redirect("/scores");
+  });
+
+  app.get("/runnerGame", function(req) {
+    req.redirect("/runnerGame");
+  });
+
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
@@ -48,7 +60,13 @@ module.exports = function(app) {
   });
 
   app.post("/api/runnerGame", function(req, res) {
-    res.json(req.user);
+    db.Score.create({
+      value: req.body.score,
+      UserId: req.user.id
+    }).then(function() {
+      res.sendStatus(200);
+    });
+    // res.json(req.user);
   });
 
   app.post("/api/scores", function(req, res) {
