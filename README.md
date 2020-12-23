@@ -4,7 +4,7 @@
 ## Description
 A deployed app that uses Heroku for the server, and handlebars for the html templates, then PIXI.js as a game engine where we used to create the runner game. We have a user login as well as highScore for each user saved. The game we have squidward trying to dodge cornavirus and get the plankcoin. The leftover health is thse score you achieve, the point is to try to get to the coin with the most amount of Health left. 
 
-[deployed gif] (/public/images/BikiniBeach.gif);
+![deployed gif](/public/images/BikiniBeach.gif);
 
  [deployed app](https://blooming-spire-21723.herokuapp.com/)
 ## **Table of contents**
